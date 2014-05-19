@@ -13,6 +13,19 @@ smData <- merge( sm1Data, sm2Data, all=TRUE )
 x <- paste( smData$Date, smData$Time )
 smData$times <- as.POSIXct( x )
 
+# create 2x2 panels
+par( mfrow=c(2,2) )
+
+# create first plot
+smData$Global_active_power <- as.numeric(as.character(smData$Global_active_power))
+plot(smData$times, smData$Global_active_power, type="n", main="", ylab="Global Active Power (kilowatts)", xlab="" ) 
+lines( smData$times, smData$Global_active_power )
+
+# create second plot -- NO IDEA WHAT THIS SHOULD BE
+smData$Voltage <- as.numeric(as.character(smData$Voltage))
+plot(smData$times, smData$Voltage, type="n", main="", ylab="Voltage", xlab="datetime" ) 
+lines( smData$times, smData$Global_active_power )
+
 # create third plot
 smData$Sub_metering_1 <- as.numeric(as.character(smData$Sub_metering_1))
 smData$Sub_metering_2 <- as.numeric(as.character(smData$Sub_metering_2))
@@ -25,3 +38,8 @@ legend( "topright",
   lty=c(1,1),
   col=c( "black", "red", "blue" ),
   c( "Sub_metering_1", "Sub_metering_2", "Sub_metering_3" ) )
+
+# create fourth plot -- NO IDEA WHAT THIS SHOULD BE
+smData$Global_active_power <- as.numeric(as.character(smData$Global_active_power))
+plot(smData$times, smData$Global_active_power, type="n", main="", ylab="Global Active Power", xlab="datetime" ) 
+lines( smData$times, smData$Global_active_power )
